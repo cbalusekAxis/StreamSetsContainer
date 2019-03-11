@@ -8,7 +8,7 @@ services:
       - '18630:18630'
     env_file: .env
     volumes:
-      - 'sdc_data:/data'
+      - './sdc_data:/data'
       - 'sdc_conf:/etc/sdc'
       - 'sdc_lib:${SDC_VOL}/user-libs'
       - 'sdc_lib:${SDC_VOL}/streamsets-libs'
