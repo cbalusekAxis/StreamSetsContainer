@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  sdc:
+    build: ./sdc_build
+    image: cbalusek/sdc_test
+    ports:
+      - '18630:18630'
+    env_file: .env
+    volumes:
+      - 'sdc_data:/data'
+      - 'sdc_conf:/etc/sdc'
+      - 'sdc_lib:${SDC_VOL}/user-libs'
+      - 'sdc_lib:${SDC_VOL}/streamsets-libs'
+      - 'sdc_lib:${SDC_VOL}/streamsets-libs-extras'
+      - type: bind
+        source: './static'
+        target: '${SDC_VOL}/static'
+        read_only: true
+    networks:
+      - poc_net
+
+volumes:
+  sdc_conf:
+  sdc_data:
+  sdc_lib:
+
+networks:
+  poc_net:
